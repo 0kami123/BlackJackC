@@ -4,49 +4,87 @@
 
 //Final Draft
 
+
 #include <stdlib.h>
+
 #include <stdio.h>
+
 #include <math.h>
+
 #include <time.h>                //Used for srand((unsigned) time(NULL)) command
+
 #include <process.h>             //Used for system("cls") command
  
+
 #define spade 06                 //Used to print spade symbol
+
 #define club 05                  //Used to print club symbol
+
 #define diamond 04               //Used to print diamond symbol
+
 #define heart 03                 //Used to print heart symbol
+
 #define RESULTS "Blackjack.txt"  //File name is Blackjack
  
 //Global Variables
+
 int k;
+
 int l;
+
 int d;
+
 int won;
+
 int loss;
+
 int cash = 500;
+
 int bet;
+
 int random_card;
+
 int player_total=0;
+
 int dealer_total;
  
+
 //Function Prototypes
+
 int clubcard();      //Displays Club Card Image
+
 int diamondcard();   //Displays Diamond Card Image
+
 int heartcard();     //Displays Heart Card Image
+
 int spadecard();     //Displays Spade Card Image
+
 int randcard();      //Generates random card
+
 int betting();       //Asks user amount to bet
+
 void asktitle();     //Asks user to continue
+
 void rules();        //Prints "Rules of Nikita's Blackjack" menu
+
 void play();         //Plays game
+
 void dealer();       //Function to play for dealer AI
+
 void stay();         //Function for when user selects 'Stay'
+
 void cash_test();    //Test for if user has cash remaining in purse
+
 void askover();      //Asks if user wants to continue playing
+
 void fileresults();  //Prints results into Blackjack.txt file in program directory
  
 //Main Function
+
 int main(void)
+
 {
+    
     int choice1;
     printf("\n");
     printf("\n");
@@ -91,10 +129,13 @@ int main(void)
     printf("\n");
     system("pause");
     return(0);
-} //end program
+
+} 
+//end program
  
 void asktitle() // Function for asking player if they want to continue
 {
+    
     char choice1;
     int choice2;
      
@@ -165,6 +206,7 @@ void asktitle() // Function for asking player if they want to continue
  
 void rules() //Prints "Rules of Nikita's Blackjack" list
 {
+     
      char choice1;
      int choice2;
       
@@ -630,6 +672,7 @@ void play() //Plays game
  
 void dealer() //Function to play for dealer AI
 {
+     
      int z;
       
      if(dealer_total<17)
@@ -668,9 +711,11 @@ void dealer() //Function to play for dealer AI
  
 void stay() //Function for when user selects 'Stay'
 {
+     
      dealer(); //If stay selected, dealer continues going
      if(dealer_total>=17)
      {
+      
       if(player_total>=dealer_total) //If player's total is more than dealer's total, win
       {
          printf("\nUnbelievable! You Win!\n");
@@ -708,6 +753,7 @@ void stay() //Function for when user selects 'Stay'
  
 void cash_test() //Test for if user has cash remaining in purse
 {
+     
      if (cash <= 0) //Once user has zero remaining cash, game ends and prompts user to play again
      {
         printf("You Are Bankrupt. Game Over");
@@ -718,12 +764,15 @@ void cash_test() //Test for if user has cash remaining in purse
  
 int betting() //Asks user amount to bet
 {
+ 
  printf("\n\nEnter Bet: $");
+ 
  scanf("%d", &bet);
  
  if (bet > cash) //If player tries to bet more money than player has
  {
-        printf("\nYou cannot bet more money than you have.");
+       
+       printf("\nYou cannot bet more money than you have.");
         printf("\nEnter Bet: ");
         scanf("%d", &bet);
         return bet;
@@ -733,6 +782,7 @@ int betting() //Asks user amount to bet
  
 void askover() // Function for asking player if they want to play again
 {
+    
     char choice1;
          
      printf("\nWould You Like To Play Again?");
@@ -765,6 +815,7 @@ void askover() // Function for asking player if they want to play again
  
 void fileresults() //Prints results into Blackjack.txt file in program directory
 {
+    
     FILE *fpresults; //File pointer is fpresults
     fpresults = fopen(RESULTS, "w"); //Creates file and writes into it
     if(fpresults == NULL) // what to do if file missing from directory
@@ -787,189 +838,4 @@ void fileresults() //Prints results into Blackjack.txt file in program directory
 
 
 
-/*
-Test run 1: 
-Your Total is 5  
-The Dealer Has a Total of 8   
-Enter Bet: $25   
-Would You Like to Hit or Stay? 
-Please Enter H to Hit or S to Stay.
-h 
-------- 
-|?    | 
-|  5  | 
-|    ?| 
- ------- 
- Your Total is 10 
- The Dealer Has a Total of 16  
- Would You Like to Hit or Stay? 
-  Please Enter H to Hit or S to Stay. 
-  h 
-  -------  
-|?    |                     
-|  2  |                                
-|    ?|                                
--------                                                                         
-Your Total is 12                                                                    
-The Dealer Has a Total of 21            
-Dealer Has the Better Hand. You Lose.                                
-You have 2 Wins and 2 Losses. Awesome!                            
-Would You Like To Play Again?        
-Please Enter Y for Yes or N for No   
-*/
-
-
-/*
-Test run 2: 
-
-Cash: $450
--------
-|?    |
-|  1  |
-|    ?|
--------
-
-Your Total is 1
-
-The Dealer Has a Total of 4
-
-Enter Bet: $50
-
-
-Would You Like to Hit or Stay?
-Please Enter H to Hit or S to Stay.
-H
--------
-|?    |
-|  A  |
-|    ?|
--------
-
-Your Total is 12
-
-The Dealer Has a Total of 5
-
-Would You Like to Hit or Stay?
-Please Enter H to Hit or S to Stay.
-H
--------
-|?    |
-|  8  |
-|    ?|
--------
-
-Your Total is 20
-
-The Dealer Has a Total of 16
-
-Would You Like to Hit or Stay?
-Please Enter H to Hit or S to Stay.
-S
-
-You Have Chosen to Stay at 20. Wise Decision!
-
-The Dealer Has a Total of 20
-Unbelievable! You Win!
-
-You have 2 Wins and 2 Losses. Awesome!
-
-Would You Like To Play Again?
-Please Enter Y for Yes or N for No
-*/           
-
-/* 
-Test run 3:
-
-Cash: $450
--------
-|?    |
-|  6  |
-|    ?|
--------
-
-Your Total is 6
-
-The Dealer Has a Total of 9
-
-Enter Bet: $25
-
-
-Would You Like to Hit or Stay?
-Please Enter H to Hit or S to Stay.
-H
--------
-|?    |
-|  6  |
-|    ?|
--------
-
-Your Total is 12
-
-The Dealer Has a Total of 18
-
-Would You Like to Hit or Stay?
-Please Enter H to Hit or S to Stay.
-H
--------
-|?    |
-|  K  |
-|    ?|
--------
-
-Your Total is 22
-
-The Dealer Has a Total of 18
-Woah Buddy, You Went WAY over.
-
-You have 0 Wins and 3 Losses. Awesome!
-
-Would You Like To Play Again?
-Please Enter Y for Yes or N for No
-*/
-
-/*
-Test run rules:       
-
-           RULES of Nikita's BLACKJACK
-          ---------------------------
-I.
-     Thou shalt not question the odds of this game.
-      ? This program generates cards at random.
-      ? If you keep losing, you are very unlucky!
-
-II.
-     Each card has a value.
-      ? Number cards 1 to 10 hold a value of their number.
-      ? J, Q, and K cards hold a value of 10.
-      ? Ace cards hold a value of 11
-     The goal of this game is to reach a card value total of 21.
-
-III.
-     After the dealing of the first two cards, YOU must decide whether to HIT or
- STAY.
-      ? Staying will keep you safe, hitting will add a card.
-     Because you are competing against the dealer, you must beat his hand.
-     BUT BEWARE!.
-      ? If your total goes over 21, you will LOSE!.
-     But the world is not over, because you can always play again.
-
-??? YOUR RESULTS ARE RECORDED AND FOUND IN SAME FOLDER AS PROGRAM ???
-
-Would you like to go the previous screen? (I will not take NO for an answer)
-                  (Y/N)
-*/ 
-
- 
-/*
-Test run exit:        
-
-Enter 1 to Begin the Greatest Game Ever Played.
-Enter 2 to See a Complete Listing of Rules.
-Enter 3 to Exit Game. (Not Recommended)
-Choice: 3
-
-Your day could have been perfect.
-Have an almost perfect day!
-
-Press any key to continue . . .
-*/                                                               
+                                                  
